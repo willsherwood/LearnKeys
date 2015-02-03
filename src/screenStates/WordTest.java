@@ -1,8 +1,13 @@
 package screenStates;
 
 import java.awt.Graphics2D;
+import java.util.Arrays;
 import java.util.BitSet;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import mechanics.EnglishWords;
 import mechanics.KeyLayout;
 import sherwood.gameScreen.GameScreen;
 import sherwood.inputs.keyboard.fullKeys.FullDiscreteKeyboardInput;
@@ -12,6 +17,7 @@ public class WordTest extends ScreenState {
 	
 	private char[] domain;
 	private char[] range;
+	private Set<String> words;
 
 	public WordTest(KeyLayout testingLayout) {
 		this(testingLayout, testingLayout.getRange());
@@ -26,6 +32,8 @@ public class WordTest extends ScreenState {
 		for (int i=0; i<domain.length; i++) {
 			domain[i] = testingLayout.fromThis(range[i]);
 		}
+		Object o  = EnglishWords.getFilteredWords(EnglishWords.getFilteredLetterPredicate(Arrays.asList(range).stream().collect(Collectors.toSet())));
+		Arrays.asList(range);
 	}
 	
 	@Override
