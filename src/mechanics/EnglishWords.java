@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -19,9 +19,9 @@ public class EnglishWords {
         };
     }
 
-    public static final Set<String> getFilteredWords(Predicate<String> t) {
+    public static final List<String> getFilteredWords(Predicate<String> t) {
         try {
-            return Files.lines(Paths.get(new File("enable1.txt").toURI())).filter(t).collect(Collectors.toSet());
+            return Files.lines(Paths.get(new File("enable1.txt").toURI())).filter(t).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
